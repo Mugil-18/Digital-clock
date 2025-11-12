@@ -1,0 +1,109 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    min-height: 100vh;
+    background: black;
+}
+#clock{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+
+}
+#hrsdots,
+#minsdots,
+#secdots{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    position: relative;
+    rotate: 90deg;
+}
+#hrsdots::before,
+#secdots::before,
+#minsdots::before{
+    content: '';
+    position: absolute;
+    inset: -20px;
+    box-shadow: 25px 25px 75px rgba(0,0,0,0.25),10px 10px 70px rgba(0,0,0,0.25),
+    inset 5px 5px 10px rgba(0,0,0,0.5),
+    inset 5px 5px 20px rgba(255,255,255,0.2),
+    inset -5px -5px 15px rgba(0,0,0,0.75) ;
+    border-radius: 50%;
+}
+
+#hrsdots h2 ,
+#minsdots h2,
+#secdots h2
+{
+    color: var(--clr);
+    position: absolute;
+    text-align: center;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 4em;
+    font-weight: 400;
+   transform: rotate(-90deg);
+}
+#hrsdots h2 span,
+#minsdots h2 span ,
+#secdots h2 span{
+
+    position: absolute;
+    font-size: 0.25em;
+    font-weight: 500;
+    bottom: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+
+}
+
+#secdots b {
+    position: absolute;
+    color: beige;
+    display: inline-flex;
+    transform: rotate(-90deg) translate(-30px,90px);
+}
+
+#secdots .dot,
+#minsdots .dot
+{
+    position: absolute;
+    top: 50%;
+    width: 10px;
+    height: 2px;
+    background: var(--clr);
+    transform-origin: 100px;
+  
+}
+#secdots .active.dot,
+#minsdots .active.dot{
+    background: var(--clr);
+    box-shadow: 0 0 10px var(--clr),
+    0 0 20px var(--clr),
+    0 0 30px var(--clr);
+}
+#secdots .active.dot ~.dot{
+    background: #555;
+
+}
+#someone{
+    color: beige;
+    display: block;
+    align-content: center;
+    justify-content: center;
+    padding-top: 0%;
+    margin-left: 0%;
+}

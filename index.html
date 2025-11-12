@@ -1,0 +1,94 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DIGITAL CLOCK</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1 id="someone"> Welcome to my digi clock</h1>
+    
+    <div id="clock">
+      <div id="hrsdots" style="--clr: #ff2972"></div>
+      <div id="minsdots" style="--clr: #fee830"></div>
+      <div id="secdots" style="--clr: #04fc43"></div>
+    </div>
+    <script>
+      function clock(){
+          let secdots = document.getElementById('secdots');
+          let minsdots = document.getElementById('minsdots');
+          let hrsdots = document.getElementById('hrsdots');
+
+          var date = new Date();
+          var hours = date.getHours()%12 // convert to 12 hr format
+          var amPm = date.getHours() >=12 ?'PM' : 'AM';
+
+
+          hours = hours ===0 ? 12:hours;  // handle midnight hours(0)
+          var minutes = date.getMinutes();
+          var seconds = date.getSeconds();
+           
+           // for seconds
+          var secondsdots='';
+          for(var i=1;i<61;i++){
+              var rotation =i*6 //rotate each line by 6 degrees
+          if(i===seconds){
+              secondsdots += '<div class="dot active" style="transform:rotate('+rotation+'degree)"> </div>';
+
+          }
+          else{
+              secondsdots += '<div class="dot" style="transform:rotate('+rotation+'degree)"> </div>';
+
+          }
+          }
+           
+           // for minutes
+
+          var minutesdots='';
+          for(var i=1;i<61;i++){
+              var rotation =i*6 //rotate each line by 6 degrees
+          if(i===minutes){
+              minutesdots += '<div class="dot active" style="transform:rotate('+rotation+'degree)"> </div>';
+
+          }
+          else{
+              minutesdots += '<div class="dot" style="transform:rotate('+rotation+'degree)"> </div>';
+
+          }
+          }
+
+          // for hours
+
+          var hoursdots='';
+          for(var i=1;i<13;i++){
+              var rotation =i*30 //rotate each line by 30degrees
+          if(i===hours){
+              hoursdots += '<div class="dot active" style="transform:rotate('+rotation+'degree)"> </div>';
+
+          }
+          else{
+              hoursdots += '<div class="dot" style="transform:rotate('+rotation+'degree)"> </div>';
+
+          }
+          }
+
+
+
+          secdots.innerHTML = secondsdots +'<b>'+ amPm + '</b>'+'<h2>'+zero(seconds) + '<br><span>seconds</span></h2>';
+          minsdots.innerHTML = minutesdots+'<h2>'+zero(minutes) + '<br><span>minutes</span></h2>';
+          hrsdots.innerHTML = hoursdots+'<h2>'+zero(hours) + '<br><span>hours</span></h2>';
+
+      }
+
+      // add zero in single digit number
+      function zero(number){
+          if (number <10){
+              return '0' + number;
+          }
+          return number;
+      }
+
+      setInterval(clock,1000)
+    </script>
+  </body>
+</html>
